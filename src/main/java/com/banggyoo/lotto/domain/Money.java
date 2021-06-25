@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Money {
     public static final String MINUS_MONEY_ERROR_MESSAGE = "돈은 음수가 될 수 없습니다.";
+    public static final int LOTTO_PAYMENT = 1000;
     private final int money;
 
     public Money(int money) {
@@ -15,8 +16,8 @@ public class Money {
         this(Integer.parseInt(money));
     }
 
-    public int canBuyLottos() {
-        return money / 1000;
+    public int calcPossibleLottoQuntitiy() {
+        return money / LOTTO_PAYMENT;
     }
 
     private void invalidMinusMoney(int money) {

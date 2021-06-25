@@ -10,7 +10,7 @@ public class ResultView {
     private static final String PURCHASE_LOTTO_COUNT_MESSAGE = "개를 구입했습니다.";
 
     public void displayPurchaseLottoCount(Money money) {
-        int lottoCount = money.canBuyLottos();
+        int lottoCount = money.calcPossibleLottoQuntitiy();
         System.out.println(lottoCount + PURCHASE_LOTTO_COUNT_MESSAGE);
     }
 
