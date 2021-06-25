@@ -16,7 +16,7 @@ public class Money {
     }
 
     public int canBuyLottos() {
-        return money/1000;
+        return money / 1000;
     }
 
     private void invalidMinusMoney(int money) {

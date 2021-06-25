@@ -12,20 +12,11 @@ import java.util.List;
 
 public class LottoAutoApplication {
 
-    InputView inputView;
-    ResultView resultView;
-    LottoStore lottoStore;
-
-    public LottoAutoApplication() {
-        this.inputView = new InputView();
-        this.resultView = new ResultView();
-        this.lottoStore = new LottoStore();
-    }
-
-
     public void run() {
-        String moneyString = inputView.requestBuyLottoMoney();
-        Money money = new Money(moneyString);
+        ResultView resultView = new ResultView();
+        InputView inputView = new InputView();
+        LottoStore lottoStore = new LottoStore(inputView);
+        Money money = lottoStore.createBuyMoney();
         resultView.displayPurchaseLottoCount(money);
         Lottos buyAutoLotto = lottoStore.buyAutoLotto(money);
         resultView.displayBuyAutoLotto(buyAutoLotto);
