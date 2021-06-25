@@ -18,6 +18,21 @@ public class MoneyTest {
         assertThatThrownBy(() -> new Money(-100)).isInstanceOf(IllegalArgumentException.class).hasMessage("돈은 음수가 될 수 없습니다.");
     }
 
+    @Test
+    void 문자열로_된_금액을_저장한다() {
+        assertThat(new Money("2000")).isEqualTo(new Money(2000));
+    }
+
+    @Test
+    void 정수형이_아닌_문자열이_들어오면_에러발생() {
+        assertThatThrownBy(() -> new Money("2.2")).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 살수있는_로또의_값을_계산한다() {
+        assertThat(new Money(2800).canBuyLottos()).isEqualTo(2);
+    }
+
 
 
 }
