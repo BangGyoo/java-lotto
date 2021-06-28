@@ -7,6 +7,13 @@ public class Lotto {
     public static final String LOTTO_SIZE_OUT_OF_BOUND_MESSAGE = "로또는 6자리여야 합니다.";
     public static final int LOTTO_LENGTH = 6;
     private final Set<LottoNumber> lotto;
+    private static final List<Integer> LOTTO_NUMBERS = new ArrayList<>();
+
+    static {
+        for (int i = LottoNumber.LOTTO_MINIMUM_NUMBER; i <= LottoNumber.LOTTO_MAXIMUM_NUMBER; i++) {
+            LOTTO_NUMBERS.add(i);
+        }
+    }
 
     public Lotto(List<Integer> lotto) {
         invalidLottoLength(lotto);
@@ -14,12 +21,8 @@ public class Lotto {
     }
 
     public static Lotto generateAutoLotto() {
-        List<Integer> lottoNumbers = new ArrayList<>();
-        for (int i = LottoNumber.LOTTO_MINIMUM_NUMBER; i <= LottoNumber.LOTTO_MAXIMUM_NUMBER; i++) {
-            lottoNumbers.add(i);
-        }
-        Collections.shuffle(lottoNumbers);
-        List<Integer> shuffledLotto = lottoNumbers.subList(0,LOTTO_LENGTH);
+        Collections.shuffle(LOTTO_NUMBERS);
+        List<Integer> shuffledLotto = LOTTO_NUMBERS.subList(0,LOTTO_LENGTH);
         return new Lotto(shuffledLotto);
     }
 

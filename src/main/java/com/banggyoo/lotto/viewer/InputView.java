@@ -13,6 +13,11 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public String requestWinningLottoNumbers() {
+        System.out.println("지난주 당첨 번호를 입력해주세요.");
+        return scanner.nextLine();
+    }
+
 
     public List<Integer> requestInputWinningLottoNumbers() {
         return null;
