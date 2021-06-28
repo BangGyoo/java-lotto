@@ -1,4 +1,4 @@
-package com.banggyoo.lotto;
+package com.banggyoo.lotto.domain;
 
 import com.banggyoo.lotto.domain.Money;
 import org.junit.jupiter.api.Test;
@@ -30,7 +30,7 @@ public class MoneyTest {
 
     @Test
     void 살수있는_로또의_값을_계산한다() {
-        assertThat(new Money(2800).calcPossibleLottoQuntitiy()).isEqualTo(2);
+        assertThat(new Money(2800).calcPossibleLottoQuantity()).isEqualTo(2);
     }
 
 

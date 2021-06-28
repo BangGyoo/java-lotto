@@ -18,11 +18,11 @@ public class LottoAutoApplication {
         LottoStore lottoStore = new LottoStore(inputView);
         Money money = lottoStore.createBuyMoney();
         resultView.displayPurchaseLottoCount(money);
-        Lottos buyAutoLotto = lottoStore.buyAutoLotto(money);
-        resultView.displayBuyAutoLotto(buyAutoLotto);
+        Lottos buyAutoLottos = lottoStore.buyAutoLotto(money);
+        resultView.displayBuyAutoLottos(buyAutoLottos);
         List<Integer> winningLottoNumbers = inputView.requestInputWinningLottoNumbers();
         Lotto winningLotto = new Lotto(winningLottoNumbers);
-        List<LottoRank> ranks = lottoStore.calcRanks(buyAutoLotto, winningLotto);
+        List<LottoRank> ranks = lottoStore.calcRanks(buyAutoLottos, winningLotto);
         resultView.displayAnalysis(ranks, money);
     }
 }

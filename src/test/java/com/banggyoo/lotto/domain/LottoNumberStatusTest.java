@@ -1,4 +1,4 @@
-package com.banggyoo.lotto;
+package com.banggyoo.lotto.domain;
 
 import com.banggyoo.lotto.domain.LottoNumberStatus;
 import org.junit.jupiter.api.Test;

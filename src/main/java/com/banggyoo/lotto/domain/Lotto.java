@@ -1,8 +1,6 @@
 package com.banggyoo.lotto.domain;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -15,6 +13,15 @@ public class Lotto {
         this.lotto = lotto.stream().map(LottoNumber::create).collect(Collectors.toSet());
     }
 
+    public static Lotto generateAutoLotto() {
+        List<Integer> lottoNumbers = new ArrayList<>();
+        for (int i = LottoNumber.LOTTO_MINIMUM_NUMBER; i <= LottoNumber.LOTTO_MAXIMUM_NUMBER; i++) {
+            lottoNumbers.add(i);
+        }
+        Collections.shuffle(lottoNumbers);
+        List<Integer> shuffledLotto = lottoNumbers.subList(0,LOTTO_LENGTH);
+        return new Lotto(shuffledLotto);
+    }
 
     private void invalidLottoLength(List<Integer> lotto) {
         if (lotto.size() != LOTTO_LENGTH) {
@@ -75,4 +82,13 @@ public class Lotto {
         return Objects.hash(lotto);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append('[');
+
+        this.lotto.stream().collect(Collectors.toList())
+                .stream().sorted(LottoNumber::compare).forEach(item -> stringBuilder.append(item + ", "));
+        return stringBuilder.toString().replaceAll(", $", "]");
+    }
 }

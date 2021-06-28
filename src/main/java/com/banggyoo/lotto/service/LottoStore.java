@@ -6,6 +6,7 @@ import com.banggyoo.lotto.domain.Lottos;
 import com.banggyoo.lotto.domain.Money;
 import com.banggyoo.lotto.viewer.InputView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,9 +36,14 @@ public class LottoStore {
 
 
     public Lottos buyAutoLotto(Money money) {
-
-        return null;
+        List<Lotto> lottos = new ArrayList<>();
+        int lottoQuantity = money.calcPossibleLottoQuantity();
+        for (int i = 0; i < lottoQuantity; i++) {
+            lottos.add(Lotto.generateAutoLotto());
+        }
+        return new Lottos(lottos);
     }
+
 
     public List<LottoRank> calcRanks(Lottos buyAutoLotto, Lotto winningLotto) {
         return null;

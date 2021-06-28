@@ -16,7 +16,7 @@ public class Money {
         this(Integer.parseInt(money));
     }
 
-    public int calcPossibleLottoQuntitiy() {
+    public int calcPossibleLottoQuantity() {
         return money / LOTTO_PAYMENT;
     }
 

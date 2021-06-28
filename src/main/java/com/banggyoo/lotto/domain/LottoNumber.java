@@ -24,7 +24,6 @@ public class LottoNumber {
         return new LottoNumber(lottoNumber);
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,4 +41,9 @@ public class LottoNumber {
     public String toString() {
         return Integer.toString(lottoNumber);
     }
+
+    public int compare(LottoNumber lottoNumber) {
+        return Integer.compare(this.lottoNumber, lottoNumber.lottoNumber);
+    }
+
 }

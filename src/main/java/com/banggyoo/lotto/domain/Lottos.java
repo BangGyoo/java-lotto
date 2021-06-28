@@ -36,6 +36,11 @@ public class Lottos {
 
     @Override
     public String toString() {
-        return "[X, X, X, X, X, X]";
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Lotto lotto : this.lottos) {
+            stringBuilder.append(lotto.toString());
+            stringBuilder.append('\n');
+        }
+        return stringBuilder.toString();
     }
 }

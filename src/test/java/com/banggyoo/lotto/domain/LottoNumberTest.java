@@ -1,4 +1,4 @@
-package com.banggyoo.lotto;
+package com.banggyoo.lotto.domain;
 
 import com.banggyoo.lotto.domain.LottoNumber;
 import org.junit.jupiter.api.Test;
@@ -24,10 +24,12 @@ public class LottoNumberTest {
     }
 
     @Test
-    void 두개의_로또_넘버를_비교() {
-        LottoNumber lottoNumber1 = new LottoNumber(7);
-        LottoNumber lottoNumber2 = new LottoNumber(7);
-//        assertThat(lottoNumber1.isSame(lottoNumber2)).isEqualTo(LottoNumberStatus.CORRECT);
-//        assertThat(lottoNumber1.isSame(new LottoNumber(8))).isEqualTo(LottoNumberStatus.WRONG);
+    void 포장된_객체가_문자열로_변경되는지_확인() {
+        assertThat(new LottoNumber(20).toString()).isEqualTo("20");
+    }
+
+    @Test
+    void 현재_객체가_더_크다면_양수_반환() {
+        assertThat(new LottoNumber(30).compare(new LottoNumber(25))).isGreaterThan(0);
     }
 }
