@@ -1,8 +1,5 @@
 package com.banggyoo.lotto.domain;
 
-import com.banggyoo.lotto.domain.Lotto;
-import com.banggyoo.lotto.domain.LottoNumber;
-import com.banggyoo.lotto.domain.LottoNumberStatus;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -25,7 +22,7 @@ public class LottoTest {
 
     @Test
     void 하나의_로또_번호와_로또를_비교() {
-        assertThat(new Lotto(Arrays.asList(1,2,3,4,5,6)).compareLottoNumber(new LottoNumber(1))).isEqualTo(LottoNumberStatus.CORRECT);
+        assertThat(new Lotto(Arrays.asList(1,2,3,4,5,6)).isSameLottoNumber(new LottoNumber(1))).isTrue();
     }
 
     @Test
@@ -36,5 +33,10 @@ public class LottoTest {
     @Test
     void 로또에_들어간_데이터가_지정된_문자열로_결과가_나오는지_확인() {
         assertThat(new Lotto(Arrays.asList(1,2,3,4,5,6)).toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
+
+    @Test
+    void 로또가_몇등인지_계산() {
+        assertThat(new Lotto(Arrays.asList(1,2,3,4,5,6)).calcMatchCount(new Lotto(Arrays.asList(1,2,3,4,5,7)))).isEqualTo(LottoRank.SECOND);
     }
 }

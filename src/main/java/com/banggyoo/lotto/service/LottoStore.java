@@ -51,8 +51,8 @@ public class LottoStore {
         return new Lotto(lottoNumbers);
     }
 
-    public List<LottoRank> calcRanks(Lottos buyAutoLotto, Lotto winningLotto) {
-        return null;
+    public List<LottoRank> calcRanks(Lottos buyAutoLottos, Lotto winningLotto) {
+        return buyAutoLottos.countCorrectLottoRank(winningLotto);
     }
 
     private void checkValidInput(String value, String regex, String errorMessage) {

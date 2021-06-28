@@ -1,6 +1,7 @@
 package com.banggyoo.lotto.service;
 
 import com.banggyoo.lotto.domain.Lotto;
+import com.banggyoo.lotto.domain.LottoRank;
 import com.banggyoo.lotto.domain.Lottos;
 import com.banggyoo.lotto.domain.Money;
 import com.banggyoo.lotto.viewer.InputView;
@@ -51,7 +52,7 @@ class LottoStoreTest {
 
     @Test
     void 당첨_번호_입력_기능() {
-        InputView inputView = new InputView(){
+        InputView inputView = new InputView() {
             @Override
             public String requestWinningLottoNumbers() {
                 return "1, 2, 3, 4, 5, 6";
@@ -66,7 +67,7 @@ class LottoStoreTest {
 
     @Test
     void 구분자가_쉼표가_아닌값이_입력시_에러발생() {
-        InputView inputView = new InputView(){
+        InputView inputView = new InputView() {
             @Override
             public String requestWinningLottoNumbers() {
                 return "1| 2# 3, 4, 5, 6";
@@ -76,4 +77,13 @@ class LottoStoreTest {
         LottoStore lottoStore = new LottoStore(inputView);
         assertThatThrownBy(() -> lottoStore.createWinningLotto()).isInstanceOf(IllegalArgumentException.class).hasMessage("쉼표(,)와 숫자만 입력 가능 합니다.");
     }
+
+    @Test
+    void 로또가_맞은_등수들을_반환한다() {
+        Lottos buyAutoLottos = new Lottos(Arrays.asList(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), new Lotto(Arrays.asList(1, 2, 5, 6, 10, 12))));
+        Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+
+        assertThat(new LottoStore(new InputView()).calcRanks(buyAutoLottos, winningLotto)).contains(LottoRank.FIRST, LottoRank.THIRD);
+    }
+
 }

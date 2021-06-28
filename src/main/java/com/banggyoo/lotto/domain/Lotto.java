@@ -32,27 +32,23 @@ public class Lotto {
         }
     }
 
-    public LottoNumberStatus compareLottoNumber(LottoNumber comparedLottoNumber) {
-        LottoNumberStatus currentLottoNumberStatus = LottoNumberStatus.UNKNOWN;
+    public boolean isSameLottoNumber(LottoNumber comparedLottoNumber) {
         for (LottoNumber lottoNumber : this.lotto) {
-            currentLottoNumberStatus = currentLottoNumberStatus.changeLottoNumberStatus(lottoNumber, comparedLottoNumber);
+            if (lottoNumber.equals(comparedLottoNumber)) {
+                return true;
+            }
         }
-        return currentLottoNumberStatus;
+        return false;
     }
 
-    public LottoNumberStatus calcMatchCount(Lotto lotto) {
-        int matchCount = 0;
+    public LottoRank calcMatchCount(Lotto lotto) {
+        int currentMatchCount = 0;
         for (LottoNumber lottoNumber : lotto.lotto) {
-            matchCount += match(lottoNumber);
+            if (isSameLottoNumber(lottoNumber)) {
+                currentMatchCount++;
+            }
         }
-        return LottoNumberStatus.rank(matchCount);
-    }
-
-    private int match(LottoNumber lottoNumber) {
-        if (this.lotto.contains(lottoNumber)) {
-            return 1;
-        }
-        return 0;
+        return LottoRank.calcRank(currentMatchCount);
     }
 
 

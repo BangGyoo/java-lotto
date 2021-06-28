@@ -21,6 +21,14 @@ public class Lottos {
         return matchedLottoNumbers;
     }
 
+    public List<LottoRank> countCorrectLottoRank(Lotto winningLotto) {
+        List<LottoRank> lottoRanks = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            lottoRanks.add(lotto.calcMatchCount(winningLotto));
+        }
+        return lottoRanks;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
