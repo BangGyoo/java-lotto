@@ -1,6 +1,7 @@
 package com.banggyoo.lotto.domain;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum LottoRank {
@@ -11,23 +12,20 @@ public enum LottoRank {
     FIRST(6);
 
     private final int matchCount;
+    private static final List<LottoRank> ENUM_LIST;
+
+    static {
+        ENUM_LIST = Stream.of(LottoRank.values()).collect(Collectors.toList());
+    }
 
     LottoRank(int matchCount) {
         this.matchCount = matchCount;
     }
 
-
-    public static boolean isCorrect(LottoRank lottoNumberStatus) {
-        if (lottoNumberStatus == FOURTH) {
-            return true;
-        }
-        return false;
-    }
-
     public static LottoRank calcRank(int currentMatchCount) {
-        return Stream.of(LottoRank.values())
+        return ENUM_LIST.stream()
                 .filter(lottoRank -> lottoRank.matchCount == currentMatchCount)
-                .findFirst().orElseGet(() -> NOTHING);
+                .findFirst().orElse(NOTHING);
     }
 
 }

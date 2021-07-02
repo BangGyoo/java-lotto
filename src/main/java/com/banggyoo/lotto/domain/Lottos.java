@@ -12,15 +12,6 @@ public class Lottos {
         this.lottos = new ArrayList<>(lottos);
     }
 
-    public List<MatchedLottoNumber> compareWinningLottoMatchCount(Lotto winningLotto) {
-        List<MatchedLottoNumber> matchedLottoNumbers = new ArrayList<>();
-        for (Lotto lotto : lottos) {
-            int matchCount = winningLotto.compareWinningLottoMatchCount(lotto);
-            matchedLottoNumbers.add(new MatchedLottoNumber(matchCount));
-        }
-        return matchedLottoNumbers;
-    }
-
     public List<LottoRank> countCorrectLottoRank(Lotto winningLotto) {
         List<LottoRank> lottoRanks = new ArrayList<>();
         for (Lotto lotto : lottos) {

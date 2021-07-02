@@ -47,7 +47,7 @@ class LottoStoreTest {
 
     @Test
     void 구매가능_개수만큼_랜덤_로또를_생성한다() {
-        assertThat(new LottoStore(new InputView()).buyAutoLotto(new Money(4500))).isInstanceOf(Lottos.class);
+        assertThat(new LottoStore(new InputView()).buyAutoLottos(new Money(4500))).isInstanceOf(Lottos.class);
     }
 
     @Test

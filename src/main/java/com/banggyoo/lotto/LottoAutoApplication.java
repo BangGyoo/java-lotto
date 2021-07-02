@@ -18,7 +18,7 @@ public class LottoAutoApplication {
         LottoStore lottoStore = new LottoStore(inputView);
         Money money = lottoStore.createBuyMoney();
         resultView.displayPurchaseLottoCount(money);
-        Lottos buyAutoLottos = lottoStore.buyAutoLotto(money);
+        Lottos buyAutoLottos = lottoStore.buyAutoLottos(money);
         resultView.displayBuyAutoLottos(buyAutoLottos);
         Lotto winningLotto = lottoStore.createWinningLotto();
         List<LottoRank> ranks = lottoStore.calcRanks(buyAutoLottos, winningLotto);

@@ -31,7 +31,7 @@ public class LottoStore {
     }
 
 
-    public Lottos buyAutoLotto(Money money) {
+    public Lottos buyAutoLottos(Money money) {
         List<Lotto> lottos = new ArrayList<>();
         int lottoQuantity = money.calcPossibleLottoQuantity();
         for (int i = 0; i < lottoQuantity; i++) {
