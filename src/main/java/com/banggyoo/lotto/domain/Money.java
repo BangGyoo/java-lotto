@@ -26,6 +26,10 @@ public class Money {
         }
     }
 
+    public float calculateYield(long money) {
+        return (float) (Math.ceil((float) money / this.money * 100f) / 100f);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

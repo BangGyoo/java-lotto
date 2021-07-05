@@ -33,6 +33,10 @@ public class MoneyTest {
         assertThat(new Money(2800).calcPossibleLottoQuantity()).isEqualTo(2);
     }
 
+    @Test
+    void 로또금액의_수익률을_계산한다() {
+        assertThat(new Money(10000).calculateYield(10000)).isEqualTo(1f);
+    }
 
 
 }

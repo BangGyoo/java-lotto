@@ -35,7 +35,7 @@ class LottoRankTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0,1,2})
+    @ValueSource(ints = {0, 1, 2})
     void 주어진_match_count를_이용하여_rank_반환_꽝(int matchCount) {
         assertThat(LottoRank.calcRank(matchCount)).isEqualTo(LottoRank.NOTHING);
     }
@@ -47,4 +47,7 @@ class LottoRankTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("matchCount는 0보다 크거나 같고 6보다 작거나 같아야 합니다.");
     }
+
+
+
 }
