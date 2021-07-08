@@ -48,6 +48,16 @@ class LottoRankTest {
                 .hasMessage("matchCount는 0보다 크거나 같고 6보다 작거나 같아야 합니다.");
     }
 
+    @Test
+    void 로또번호가_몇개맞았는지_출력() {
+        assertThat(LottoRank.FIRST.generateWinningResult(2)).isEqualTo("6개 일치(2000000000)-2개");
+    }
+
+    @Test
+    void 상금을_계산한다() {
+        assertThat(LottoRank.FIRST.calculateWinningPrize(2)).isEqualTo(4000000000L);
+    }
+
 
 
 }

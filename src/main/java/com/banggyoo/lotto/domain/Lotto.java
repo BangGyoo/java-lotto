@@ -53,11 +53,10 @@ public class Lotto {
 
 
     public int contains(LottoNumber lottoNumber) {
-        int resultCount = 0;
         if (lotto.contains(lottoNumber)) {
-            resultCount++;
+            return 1;
         }
-        return resultCount;
+        return 0;
     }
 
     public int compareWinningLottoMatchCount(Lotto lotto) {

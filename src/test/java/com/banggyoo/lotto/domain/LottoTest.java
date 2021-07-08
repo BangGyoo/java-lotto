@@ -1,5 +1,6 @@
 package com.banggyoo.lotto.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -9,9 +10,17 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class LottoTest {
 
+    Lotto lotto;
+
+    @BeforeEach
+    void init() {
+        lotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
+    }
+
+
     @Test
     void 로또를_저장한다() {
-        assertThat(new Lotto(Arrays.asList(1,2,3,4,5,6))).isEqualTo(new Lotto(Arrays.asList(1,2,3,4,5,6)));
+        assertThat(lotto).isEqualTo(new Lotto(Arrays.asList(1,2,3,4,5,6)));
     }
 
     @Test
@@ -22,21 +31,32 @@ public class LottoTest {
 
     @Test
     void 하나의_로또_번호와_로또를_비교() {
-        assertThat(new Lotto(Arrays.asList(1,2,3,4,5,6)).isSameLottoNumber(new LottoNumber(1))).isTrue();
+        assertThat(lotto.isSameLottoNumber(new LottoNumber(1))).isTrue();
     }
 
     @Test
     void 로또와_로또를_비교() {
-        assertThat(new Lotto(Arrays.asList(1,2,3,4,5,6)).compareWinningLottoMatchCount(new Lotto(Arrays.asList(1,2,3,7,8,9)))).isEqualTo(3);
+        assertThat(lotto.compareWinningLottoMatchCount(new Lotto(Arrays.asList(1,2,3,7,8,9)))).isEqualTo(3);
     }
 
     @Test
     void 로또에_들어간_데이터가_지정된_문자열로_결과가_나오는지_확인() {
-        assertThat(new Lotto(Arrays.asList(1,2,3,4,5,6)).toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+        assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
     @Test
     void 로또가_몇등인지_계산() {
-        assertThat(new Lotto(Arrays.asList(1,2,3,4,5,6)).calcMatchCount(new Lotto(Arrays.asList(1,2,3,4,5,7)))).isEqualTo(LottoRank.SECOND);
+        assertThat(lotto.calcMatchCount(new Lotto(Arrays.asList(1,2,3,4,5,7)))).isEqualTo(LottoRank.SECOND);
     }
+
+    @Test
+    void 로또안에_로또번호가_포함되어있는지_확인() {
+        assertThat(lotto.contains(new LottoNumber(1))).isEqualTo(1);
+    }
+
+    @Test
+    void 로또를_문자열로_가져옴() {
+        assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
+
 }

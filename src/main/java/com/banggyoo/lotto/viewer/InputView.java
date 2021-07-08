@@ -18,8 +18,4 @@ public class InputView {
         return scanner.nextLine();
     }
 
-
-    public List<Integer> requestInputWinningLottoNumbers() {
-        return null;
-    }
 }
