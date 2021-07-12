@@ -36,6 +36,10 @@ public enum LottoRank {
                 .findFirst().orElse(NOTHING);
     }
 
+    public static List<LottoRank> getPrintTargetLottoRank() {
+        return ENUM_LIST.stream().filter(lottoRank -> lottoRank != NOTHING).collect(Collectors.toList());
+    }
+
     public String generateWinningResult(long matchLottoCount) {
         return matchCount + "개 일치(" + prizeMoney + ")-" + matchLottoCount + "개";
     }

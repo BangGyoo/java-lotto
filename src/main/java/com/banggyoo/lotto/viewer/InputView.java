@@ -1,6 +1,5 @@
 package com.banggyoo.lotto.viewer;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class InputView {

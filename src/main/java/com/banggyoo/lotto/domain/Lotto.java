@@ -22,7 +22,7 @@ public class Lotto {
 
     public static Lotto generateAutoLotto() {
         Collections.shuffle(LOTTO_NUMBERS);
-        List<Integer> shuffledLotto = LOTTO_NUMBERS.subList(0,LOTTO_LENGTH);
+        List<Integer> shuffledLotto = LOTTO_NUMBERS.subList(0, LOTTO_LENGTH);
         return new Lotto(shuffledLotto);
     }
 
@@ -34,9 +34,7 @@ public class Lotto {
 
     public boolean isSameLottoNumber(LottoNumber comparedLottoNumber) {
         for (LottoNumber lottoNumber : this.lotto) {
-            if (lottoNumber.equals(comparedLottoNumber)) {
-                return true;
-            }
+            return lottoNumber.equals(comparedLottoNumber);
         }
         return false;
     }

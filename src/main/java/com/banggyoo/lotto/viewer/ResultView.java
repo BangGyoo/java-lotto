@@ -30,8 +30,7 @@ public class ResultView {
     public void displayAnalysis(List<LottoRank> ranks, Money money) {
         System.out.println(WINNING_LOTTO_RESULT);
         Map<LottoRank, Long> collect = ranks.stream().collect(groupingBy(Function.identity(), counting()));
-        List<LottoRank> lottoRanksExceptNothing = Arrays.stream(LottoRank.values())
-                .filter((item) -> !item.equals(LottoRank.NOTHING)).collect(Collectors.toList());
+        List<LottoRank> lottoRanksExceptNothing = LottoRank.getPrintTargetLottoRank();
         long winningPrize = 0;
         for (LottoRank lottoRank : lottoRanksExceptNothing) {
             String lottoRankCountResult = lottoRank.generateWinningResult(collect.getOrDefault(lottoRank,0L));
