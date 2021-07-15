@@ -16,9 +16,8 @@ class LottosTest {
 
     @BeforeEach
     void init() {
-        lottos = new Lottos(Arrays.asList(new Lotto(Arrays.asList(1,2,3,4,5,6)),new Lotto(Arrays.asList(1,2,5,6,10,12))));
+        lottos = new Lottos(Arrays.asList(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), new Lotto(Arrays.asList(1, 2, 5, 6, 10, 12))));
     }
-
 
 
     @Test
@@ -36,7 +35,8 @@ class LottosTest {
 
     @Test
     void 로또의_등수를_반환() {
-        assertThat(lottos.countCorrectLottoRank(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6))).toArray()).contains(LottoRank.FIRST, LottoRank.THIRD);
+        assertThat(lottos.countCorrectLottoRank(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6))).toArray())
+                .contains(LottoRank.FIRST, LottoRank.THIRD);
     }
 
 }

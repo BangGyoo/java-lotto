@@ -23,7 +23,7 @@ public enum LottoRank {
         ENUM_LIST = Stream.of(LottoRank.values()).collect(Collectors.toList());
     }
 
-    LottoRank(int matchCount,int prizeMoney) {
+    LottoRank(int matchCount, int prizeMoney) {
         this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
     }
@@ -47,7 +47,6 @@ public enum LottoRank {
     public long calculateWinningPrize(long matchLottoCount) {
         return prizeMoney * matchLottoCount;
     }
-
 
 
     private static void invalidLottoMatchCount(int currentMatchCount) {

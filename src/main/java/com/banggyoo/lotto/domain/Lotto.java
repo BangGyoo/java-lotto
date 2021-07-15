@@ -33,10 +33,7 @@ public class Lotto {
     }
 
     public boolean isSameLottoNumber(LottoNumber comparedLottoNumber) {
-        for (LottoNumber lottoNumber : this.lotto) {
-            return lottoNumber.equals(comparedLottoNumber);
-        }
-        return false;
+        return this.lotto.stream().anyMatch(lottoNumber -> lottoNumber.equals(comparedLottoNumber));
     }
 
     public LottoRank calcMatchCount(Lotto lotto) {
@@ -49,21 +46,6 @@ public class Lotto {
         return LottoRank.calcRank(currentMatchCount);
     }
 
-
-    public int contains(LottoNumber lottoNumber) {
-        if (lotto.contains(lottoNumber)) {
-            return 1;
-        }
-        return 0;
-    }
-
-    public int compareWinningLottoMatchCount(Lotto lotto) {
-        int matchCount = 0;
-        for (LottoNumber lottoNumber : this.lotto) {
-            matchCount += lotto.contains(lottoNumber);
-        }
-        return matchCount;
-    }
 
     @Override
     public boolean equals(Object o) {

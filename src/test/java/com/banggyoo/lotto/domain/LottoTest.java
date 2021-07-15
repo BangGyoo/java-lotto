@@ -14,29 +14,26 @@ public class LottoTest {
 
     @BeforeEach
     void init() {
-        lotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
+        lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
     }
 
 
     @Test
     void 로또를_저장한다() {
-        assertThat(lotto).isEqualTo(new Lotto(Arrays.asList(1,2,3,4,5,6)));
+        assertThat(lotto).isEqualTo(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
     }
 
     @Test
     void 로또는_6개여야한다() {
-        assertThatThrownBy(() -> new Lotto(Arrays.asList(1,2,3,4,5))).isInstanceOf(IllegalArgumentException.class).hasMessage("로또는 6자리여야 합니다.");
-        assertThatThrownBy(() -> new Lotto(Arrays.asList(1,2,3,4,5,6,7))).isInstanceOf(IllegalArgumentException.class).hasMessage("로또는 6자리여야 합니다.");
+        assertThatThrownBy(() -> new Lotto(Arrays.asList(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("로또는 6자리여야 합니다.");
+        assertThatThrownBy(() -> new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("로또는 6자리여야 합니다.");
     }
 
     @Test
     void 하나의_로또_번호와_로또를_비교() {
         assertThat(lotto.isSameLottoNumber(new LottoNumber(1))).isTrue();
-    }
-
-    @Test
-    void 로또와_로또를_비교() {
-        assertThat(lotto.compareWinningLottoMatchCount(new Lotto(Arrays.asList(1,2,3,7,8,9)))).isEqualTo(3);
     }
 
     @Test
@@ -46,12 +43,7 @@ public class LottoTest {
 
     @Test
     void 로또가_몇등인지_계산() {
-        assertThat(lotto.calcMatchCount(new Lotto(Arrays.asList(1,2,3,4,5,7)))).isEqualTo(LottoRank.SECOND);
-    }
-
-    @Test
-    void 로또안에_로또번호가_포함되어있는지_확인() {
-        assertThat(lotto.contains(new LottoNumber(1))).isEqualTo(1);
+        assertThat(lotto.calcMatchCount(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)))).isEqualTo(LottoRank.SECOND);
     }
 
     @Test

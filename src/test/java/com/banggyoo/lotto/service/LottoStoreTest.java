@@ -75,7 +75,9 @@ class LottoStoreTest {
         };
 
         LottoStore lottoStore = new LottoStore(inputView);
-        assertThatThrownBy(() -> lottoStore.createWinningLotto()).isInstanceOf(IllegalArgumentException.class).hasMessage("쉼표(,)와 숫자만 입력 가능 합니다.");
+        assertThatThrownBy(() -> lottoStore.createWinningLotto())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("쉼표(,)와 숫자만 입력 가능 합니다.");
     }
 
     @Test
@@ -83,7 +85,8 @@ class LottoStoreTest {
         Lottos buyAutoLottos = new Lottos(Arrays.asList(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), new Lotto(Arrays.asList(1, 2, 5, 6, 10, 12))));
         Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
 
-        assertThat(new LottoStore(new InputView()).calcRanks(buyAutoLottos, winningLotto)).contains(LottoRank.FIRST, LottoRank.THIRD);
+        assertThat(new LottoStore(new InputView()).calcRanks(buyAutoLottos, winningLotto))
+                .contains(LottoRank.FIRST, LottoRank.THIRD);
     }
 
 }

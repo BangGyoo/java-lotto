@@ -15,7 +15,8 @@ public class MoneyTest {
 
     @Test
     void 돈이_음수이면_에러발생() {
-        assertThatThrownBy(() -> new Money(-100)).isInstanceOf(IllegalArgumentException.class).hasMessage("돈은 음수가 될 수 없습니다.");
+        assertThatThrownBy(() -> new Money(-100)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("돈은 음수가 될 수 없습니다.");
     }
 
     @Test

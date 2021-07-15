@@ -2,6 +2,7 @@ package com.banggyoo.lotto.domain;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -48,16 +49,22 @@ class LottoRankTest {
                 .hasMessage("matchCount는 0보다 크거나 같고 6보다 작거나 같아야 합니다.");
     }
 
-    @Test
-    void 로또번호가_몇개맞았는지_출력() {
-        assertThat(LottoRank.FIRST.generateWinningResult(2)).isEqualTo("6개 일치(2000000000)-2개");
+    @ParameterizedTest
+    @CsvSource(value = {
+            "NOTHING,0개 일치(0)-2개",
+            "FOURTH,3개 일치(5000)-2개",
+            "THIRD,4개 일치(50000)-2개",
+            "SECOND,5개 일치(1500000)-2개",
+            "FIRST,6개 일치(2000000000)-2개"})
+    void 로또번호가_몇개맞았는지_출력(LottoRank lottoRank, String expected) {
+        assertThat(lottoRank.generateWinningResult(2)).isEqualTo(expected);
     }
 
-    @Test
-    void 상금을_계산한다() {
-        assertThat(LottoRank.FIRST.calculateWinningPrize(2)).isEqualTo(4000000000L);
+    @ParameterizedTest
+    @CsvSource(value = {"NOTHING,0", "FOURTH,10000", "THIRD,100000", "SECOND,3000000", "FIRST,4000000000"})
+    void 상금을_계산한다(LottoRank lottoRank, long expected) {
+        assertThat(lottoRank.calculateWinningPrize(2)).isEqualTo(expected);
     }
-
 
 
 }

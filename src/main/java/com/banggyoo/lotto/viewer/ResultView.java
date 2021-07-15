@@ -5,11 +5,9 @@ import com.banggyoo.lotto.domain.Lottos;
 import com.banggyoo.lotto.domain.Money;
 import com.banggyoo.lotto.domain.PlayResult;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
@@ -29,14 +27,18 @@ public class ResultView {
 
     public void displayAnalysis(List<LottoRank> ranks, Money money) {
         System.out.println(WINNING_LOTTO_RESULT);
-        Map<LottoRank, Long> collect = ranks.stream().collect(groupingBy(Function.identity(), counting()));
+        Map<LottoRank, Long> lottoRankCounts = ranks.stream().collect(groupingBy(Function.identity(), counting()));
         List<LottoRank> lottoRanksExceptNothing = LottoRank.getPrintTargetLottoRank();
         long winningPrize = 0;
         for (LottoRank lottoRank : lottoRanksExceptNothing) {
-            String lottoRankCountResult = lottoRank.generateWinningResult(collect.getOrDefault(lottoRank,0L));
-            System.out.println(lottoRankCountResult);
-            winningPrize += lottoRank.calculateWinningPrize(collect.getOrDefault(lottoRank,0L));
+            displayLottoRankCountResult(lottoRankCounts, lottoRank);
+            winningPrize += lottoRank.calculateWinningPrize(lottoRankCounts.getOrDefault(lottoRank, 0L));
         }
         System.out.println(new PlayResult(money).calculateRevenue(winningPrize));
+    }
+
+    private void displayLottoRankCountResult(Map<LottoRank, Long> collect, LottoRank lottoRank) {
+        String lottoRankCountResult = lottoRank.generateWinningResult(collect.getOrDefault(lottoRank, 0L));
+        System.out.println(lottoRankCountResult);
     }
 }
