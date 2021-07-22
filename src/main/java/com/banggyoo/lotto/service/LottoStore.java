@@ -42,10 +42,10 @@ public class LottoStore {
 
 
     public Lotto createWinningLotto() {
-        String strNumbers = inputView.requestWinningLottoNumbers();
-        checkValidInput(strNumbers, WINNING_LOTTO_REGEX, WINNING_LOTTO_INVALID_ERROR_MESSAGE);
+        String winningLottoNumbers = inputView.requestWinningLottoNumbers();
+        checkValidInput(winningLottoNumbers, WINNING_LOTTO_REGEX, WINNING_LOTTO_INVALID_ERROR_MESSAGE);
         List<Integer> lottoNumbers= Stream
-                .of(strNumbers.split(SPLIT_DELIMITER))
+                .of(winningLottoNumbers.split(SPLIT_DELIMITER))
                 .map(num -> Integer.parseInt(num.trim()))
                 .collect(Collectors.toList());
         return new Lotto(lottoNumbers);
