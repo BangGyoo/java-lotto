@@ -7,6 +7,9 @@ public class WinningLotto {
     LottoNumber lottoNumber;
 
     public WinningLotto(Lotto lotto, LottoNumber lottoNumber) {
+        if (lotto.isSameLottoNumber(lottoNumber)) {
+            throw new IllegalArgumentException("보너스 번호와 로또 번호는 겹칠 수 없습니다.");
+        }
         this.lotto = lotto;
         this.lottoNumber = lottoNumber;
     }
