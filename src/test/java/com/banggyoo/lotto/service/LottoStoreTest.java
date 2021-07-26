@@ -86,7 +86,7 @@ class LottoStoreTest {
         Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
 
         assertThat(new LottoStore(new InputView()).calcRanks(buyAutoLottos, winningLotto))
-                .contains(LottoRank.FIRST, LottoRank.THIRD);
+                .contains(LottoRank.FIRST, LottoRank.FOURTH);
     }
 
 }

@@ -5,11 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum LottoRank {
-    NOTHING(0, 0),
-    FOURTH(3, 5000),
-    THIRD(4, 50000),
-    SECOND(5, 1500000),
-    FIRST(6, 2000000000);
+    NOTHING(0, 0, false),
+    FIFTH(3, 5000, false),
+    FOURTH(4, 50000, false),
+    THIRD(5, 1500000, false),
+    SECOND(5,30000000, true),
+    FIRST(6, 2000000000, false);
 
     public static final String OUT_BOUND_MATCH_COUNT_ERROR_MESSAGE = "matchCount는 0보다 크거나 같고 6보다 작거나 같아야 합니다.";
     public static final int LOTTO_MATCH_MINIMUM_COUNT = 0;
@@ -18,14 +19,16 @@ public enum LottoRank {
 
     private final int matchCount;
     private final int prizeMoney;
+    private final boolean isCorrectedBonusNumber;
 
     static {
         ENUM_LIST = Stream.of(LottoRank.values()).collect(Collectors.toList());
     }
 
-    LottoRank(int matchCount, int prizeMoney) {
+    LottoRank(int matchCount, int prizeMoney, boolean isCorrectedLotto) {
         this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
+        this.isCorrectedBonusNumber = isCorrectedLotto;
     }
 
     public static LottoRank calcRank(int currentMatchCount) {
@@ -36,12 +39,20 @@ public enum LottoRank {
                 .findFirst().orElse(NOTHING);
     }
 
+    public static LottoRank calcRank(int currentMatchCount, boolean isCorrectedBonusNumber) {
+        LottoRank lottoRank = calcRank(currentMatchCount);
+        if ( isCorrectedBonusNumber && lottoRank.equals(THIRD) ) {
+            return SECOND;
+        }
+        return lottoRank;
+    }
+
     public static List<LottoRank> getPrintTargetLottoRank() {
         return ENUM_LIST.stream().filter(lottoRank -> lottoRank != NOTHING).collect(Collectors.toList());
     }
 
     public String generateWinningResult(long matchLottoCount) {
-        return matchCount + "개 일치(" + prizeMoney + ")-" + matchLottoCount + "개";
+        return matchCount + "개 일치" + (this.equals(SECOND) ? ", 보너스 볼 일치" : "") + "(" + prizeMoney + ")-" + matchLottoCount + "개";
     }
 
     public long calculateWinningPrize(long matchLottoCount) {

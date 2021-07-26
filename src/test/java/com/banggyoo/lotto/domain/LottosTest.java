@@ -1,7 +1,5 @@
 package com.banggyoo.lotto.domain;
 
-import com.banggyoo.lotto.domain.Lotto;
-import com.banggyoo.lotto.domain.Lottos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +34,7 @@ class LottosTest {
     @Test
     void 로또의_등수를_반환() {
         assertThat(lottos.countCorrectLottoRank(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6))).toArray())
-                .contains(LottoRank.FIRST, LottoRank.THIRD);
+                .contains(LottoRank.FIRST, LottoRank.FOURTH);
     }
 
 }

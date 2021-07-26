@@ -43,7 +43,7 @@ public class LottoTest {
 
     @Test
     void 로또가_몇등인지_계산() {
-        assertThat(lotto.calcMatchCount(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)))).isEqualTo(LottoRank.SECOND);
+        assertThat(lotto.calcMatchCount(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)))).isEqualTo(LottoRank.THIRD);
     }
 
     @Test
