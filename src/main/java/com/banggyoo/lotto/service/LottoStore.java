@@ -16,7 +16,9 @@ public class LottoStore {
     private static final String BUY_MONEY_REGEX = "[^0-9]+";
     private static final String SPLIT_DELIMITER = ",";
     private static final String WINNING_LOTTO_REGEX = "[^0-9, ]";
+    private static final String WINNING_LOTTO_BONUS_REGEX = "[^0-9]";
     private static final String WINNING_LOTTO_INVALID_ERROR_MESSAGE = "쉼표(,)와 숫자만 입력 가능 합니다.";
+    public static final String WINNING_LOTTO_BONUS_NUMBER_INVALID_ERROR_MESSAGE = "숫자만 입력 가능 합니다.";
 
     private final InputView inputView;
 
@@ -41,17 +43,20 @@ public class LottoStore {
     }
 
 
-    public Lotto createWinningLotto() {
+    public WinningLotto createWinningLotto() {
         String winningLottoNumbers = inputView.requestWinningLottoNumbers();
         checkValidInput(winningLottoNumbers, WINNING_LOTTO_REGEX, WINNING_LOTTO_INVALID_ERROR_MESSAGE);
         List<Integer> lottoNumbers= Stream
                 .of(winningLottoNumbers.split(SPLIT_DELIMITER))
                 .map(num -> Integer.parseInt(num.trim()))
                 .collect(Collectors.toList());
-        return new Lotto(lottoNumbers);
+        String winningLottoBonusNumber = inputView.requestWinningLottoBonusNumber();
+        checkValidInput(winningLottoBonusNumber,WINNING_LOTTO_BONUS_REGEX,WINNING_LOTTO_BONUS_NUMBER_INVALID_ERROR_MESSAGE);
+        int lottoBonusNumber = Integer.parseInt(winningLottoBonusNumber);
+        return new WinningLotto(new Lotto(lottoNumbers),new LottoNumber(lottoBonusNumber));
     }
 
-    public List<LottoRank> calcRanks(Lottos buyAutoLottos, Lotto winningLotto) {
+    public List<LottoRank> calcRanks(Lottos buyAutoLottos, WinningLotto winningLotto) {
         return buyAutoLottos.countCorrectLottoRank(winningLotto);
     }
 
