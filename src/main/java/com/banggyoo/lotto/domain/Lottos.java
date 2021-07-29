@@ -1,6 +1,7 @@
 package com.banggyoo.lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -41,5 +42,13 @@ public class Lottos {
             stringBuilder.append('\n');
         }
         return stringBuilder.toString();
+    }
+
+    public List<LottoRank> countCorrectLottoRank(WinningLotto winningLotto) {
+        List<LottoRank> lottoRanks = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            lottoRanks.add(winningLotto.compareToLotto(lotto));
+        }
+        return lottoRanks;
     }
 }

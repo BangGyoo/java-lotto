@@ -37,4 +37,10 @@ class LottosTest {
                 .contains(LottoRank.FIRST, LottoRank.FOURTH);
     }
 
+    @Test
+    void 보너스_당첨_번호와_비교() {
+        assertThat(lottos.countCorrectLottoRank(new WinningLotto(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),new LottoNumber(7))).toArray())
+                .contains(LottoRank.FIRST, LottoRank.FOURTH);
+    }
+
 }
