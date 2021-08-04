@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Money {
     public static final String MINUS_MONEY_ERROR_MESSAGE = "돈은 음수가 될 수 없습니다.";
     public static final int LOTTO_PAYMENT = 1000;
+    public static final int MINIMUM_MONEY = 0;
     private final int money;
 
     public Money(int money) {
@@ -21,7 +22,7 @@ public class Money {
     }
 
     private void invalidMinusMoney(int money) {
-        if (money < 0) {
+        if (money < MINIMUM_MONEY) {
             throw new IllegalArgumentException(MINUS_MONEY_ERROR_MESSAGE);
         }
     }

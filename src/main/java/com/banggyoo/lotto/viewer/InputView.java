@@ -13,12 +13,12 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public String requestWinningLottoNumbers() {
+    public String requestWinningLottoNumbersInConsole() {
         System.out.println(INPUT_LAST_WEEK_WINNING_LOTTO_NUMBERS_MESSAGE);
         return scanner.nextLine();
     }
 
-    public String requestWinningLottoBonusNumber() {
+    public String requestWinningLottoBonusNumberInConsole() {
         System.out.println("보너스 볼을 입력해 주세요.");
         return scanner.nextLine();
     }

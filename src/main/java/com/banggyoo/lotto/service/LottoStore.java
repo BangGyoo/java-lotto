@@ -44,16 +44,26 @@ public class LottoStore {
 
 
     public WinningLotto createWinningLotto() {
-        String winningLottoNumbers = inputView.requestWinningLottoNumbers();
+        List<Integer> lottoNumbers = findWinningLottoNumbers();
+        int lottoBonusNumber = findLottoBonusNumber();
+        return new WinningLotto(new Lotto(lottoNumbers),new LottoNumber(lottoBonusNumber));
+    }
+
+    private int findLottoBonusNumber() {
+        String winningLottoBonusNumber = inputView.requestWinningLottoBonusNumberInConsole();
+        checkValidInput(winningLottoBonusNumber,WINNING_LOTTO_BONUS_REGEX,WINNING_LOTTO_BONUS_NUMBER_INVALID_ERROR_MESSAGE);
+        int lottoBonusNumber = Integer.parseInt(winningLottoBonusNumber);
+        return lottoBonusNumber;
+    }
+
+    private List<Integer> findWinningLottoNumbers() {
+        String winningLottoNumbers = inputView.requestWinningLottoNumbersInConsole();
         checkValidInput(winningLottoNumbers, WINNING_LOTTO_REGEX, WINNING_LOTTO_INVALID_ERROR_MESSAGE);
         List<Integer> lottoNumbers= Stream
                 .of(winningLottoNumbers.split(SPLIT_DELIMITER))
                 .map(num -> Integer.parseInt(num.trim()))
                 .collect(Collectors.toList());
-        String winningLottoBonusNumber = inputView.requestWinningLottoBonusNumber();
-        checkValidInput(winningLottoBonusNumber,WINNING_LOTTO_BONUS_REGEX,WINNING_LOTTO_BONUS_NUMBER_INVALID_ERROR_MESSAGE);
-        int lottoBonusNumber = Integer.parseInt(winningLottoBonusNumber);
-        return new WinningLotto(new Lotto(lottoNumbers),new LottoNumber(lottoBonusNumber));
+        return lottoNumbers;
     }
 
     public List<LottoRank> calcRanks(Lottos buyAutoLottos, WinningLotto winningLotto) {

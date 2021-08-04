@@ -51,12 +51,12 @@ class LottoStoreTest {
     void 당첨_번호_입력_기능() {
         InputView inputView = new InputView() {
             @Override
-            public String requestWinningLottoNumbers() {
+            public String requestWinningLottoNumbersInConsole() {
                 return "1, 2, 3, 4, 5, 6";
             }
 
             @Override
-            public String requestWinningLottoBonusNumber() {
+            public String requestWinningLottoBonusNumberInConsole() {
                 return "7";
             }
         };
@@ -71,7 +71,7 @@ class LottoStoreTest {
     void 구분자가_쉼표가_아닌값이_입력시_에러발생() {
         InputView inputView = new InputView() {
             @Override
-            public String requestWinningLottoNumbers() {
+            public String requestWinningLottoNumbersInConsole() {
                 return "1| 2# 3, 4, 5, 6";
             }
         };
@@ -86,12 +86,12 @@ class LottoStoreTest {
     void 숫자_이외의_값_입력시_에러발생() {
         InputView inputView = new InputView() {
             @Override
-            public String requestWinningLottoNumbers() {
+            public String requestWinningLottoNumbersInConsole() {
                 return "1, 2, 3, 4, 5, 6";
             }
 
             @Override
-            public String requestWinningLottoBonusNumber() {
+            public String requestWinningLottoBonusNumberInConsole() {
                 return "a";
             }
         };

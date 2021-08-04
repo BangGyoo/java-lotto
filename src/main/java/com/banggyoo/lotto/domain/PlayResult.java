@@ -1,9 +1,11 @@
 package com.banggyoo.lotto.domain;
 
 import java.util.Objects;
+import java.text.MessageFormat;
 
 public class PlayResult {
 
+    public static final String CALCULATED_REVENUE_RESULT_MESSAGE = "총 수익률은 {0}입니다.";
     private Money money;
 
     public PlayResult(Money money) {
@@ -11,7 +13,7 @@ public class PlayResult {
     }
 
     public String calculateRevenue(long winningPrize) {
-        return "총 수익률은 " + money.calculateYield(winningPrize) + "입니다.";
+        return MessageFormat.format(CALCULATED_REVENUE_RESULT_MESSAGE,money.calculateYield(winningPrize));
     }
 
     @Override
